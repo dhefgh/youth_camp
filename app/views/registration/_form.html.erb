@@ -97,6 +97,16 @@
         </label>
       </div>
 
+     <div class="form-group col-md-4 col-sm-4 worker_details">
+        <%= f.label :profession %>
+        <%= f.select :profession, @professions, {}, {class: 'form-control'} %>
+      </div>
+
+      <div class="form-group col-md-4 col-sm-4 ">
+        <%= f.label :other_profession %>
+        <%= f.text_field :other_profession, class: 'form-control' %>        
+      </div>
+
       <div class="form-group col-md-4 col-sm-4 student_details">
         <%= f.label :school %>
         <%= f.select :school, @schools, {}, {class: 'form-control'} %>

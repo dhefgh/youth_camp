@@ -3,20 +3,73 @@
 <head>
   <title>YouthCamp</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application"%>
+ 
   <%= csrf_meta_tags %>
 </head>
-<body ng-app="app" class='admin-app'>
+<body >
 
   <%= render 'layouts/top_menu_admin' %>
   <div class="container-fluid">
     <div class="row">
       
       <div class="col-sm-12  col-md-12 admin-main">
-        <ui-view></ui-view>    
+        <div id="app">
+    <h2 class="page-header" ng-show='false'>Stats</h2>
+    <h2 class="page-header">Campers </h2>
+    <!--<span clas="pull-right">  {{ campers.length }} </span>-->
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <h3 class="panel-title">
+                List of Campers
+                <a href="" class="pull-right btn btn-default btn-sm" ng-click="fetchData()">
+                    <i class="glyphicon glyphicon-refresh"></i> Refresh
+                </a>
+                <a style="margin-right: 20px;" href="" class="pull-right btn btn-default btn-sm" ng-click="export()">
+                    <i class="glyphicon glyphicon-download"></i> Download CSV
+                </a>
+                <span class="pull-right fetching" >fetching....</span>
+            </h3>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="ax-grid-action-1">#</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Date Of Birth</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>Church</th>
+                    <th>Arrival Day</th>
+                    <th>Arrival time</th>
+                    <th class="ax-grid-action-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="camper in campers">
+                    <td> .</td>
+                    <td> {{ camper.last_name }} {{ camper.first_name}} {{ camper.other_names}} </td>
+                    <td> {{ camper.gender }} </td>
+                    <td> {{ camper.date_of_birth }} </td>
+                    <td> {{ camper.email }} </td>
+                    <td> {{ camper.phone_number }} </td>
+                    <td> {{ camper.church.name}}</td>
+                    <td> {{ camper.arrival_day}}</td>
+                    <td> {{ camper.arrival_time}}</td>
+                    <td>
+                        <a href=#>
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>    
     </div>
   </div> 
   
   </div>
+   <%= javascript_include_tag "application"%>
 </body>
 </html>

@@ -1,65 +1,53 @@
-<h2 class="page-header" ng-show='false'>Stats</h2>
-
-<h2 class="page-header">Campers 
-  
-  <span clas="pull-right">  {{ campers.length }} </span>
-</h2>
-
-  <div>
-    <ui-view></ui-view>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading clearfix">
-      <h3 class="panel-title">
-        List of Campers
-
-        <a href="" class="pull-right btn btn-default btn-sm" ng-click="fetchData()"> 
-          <i class="glyphicon glyphicon-refresh"></i> Refresh 
-        </a>
-
-        <a style="margin-right: 20px;" href="" class="pull-right btn btn-default btn-sm" ng-click="export()"> 
-          <i class="glyphicon glyphicon-download"></i> Download CSV 
-        </a>
-
-        <span class="pull-right fetching" ng-show="isFetching">fecthing....</span>
-      </h3>
-
+<div id="app">
+    <h2 class="page-header" ng-show='false'>Stats</h2>
+    <h2 class="page-header">Campers </h2>
+    <!--<span clas="pull-right">  {{ campers.length }} </span>-->
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <h3 class="panel-title">
+                List of Campers
+                <a href="" class="pull-right btn btn-default btn-sm" ng-click="fetchData()">
+                    <i class="glyphicon glyphicon-refresh"></i> Refresh
+                </a>
+                <a style="margin-right: 20px;" href="" class="pull-right btn btn-default btn-sm" ng-click="export()">
+                    <i class="glyphicon glyphicon-download"></i> Download CSV
+                </a>
+                <span class="pull-right fetching" v-show="isFetching">fetching....</span>
+            </h3>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="ax-grid-action-1">#</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Date Of Birth</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>Church</th>
+                    <th>Arrival Day</th>
+                    <th>Arrival time</th>
+                    <th class="ax-grid-action-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="camper in campers">
+                    <td> .</td>
+                    <td> {{ camper.last_name }} {{ camper.first_name}} {{ camper.other_names}} </td>
+                    <td> {{ camper.gender }} </td>
+                    <td> {{ camper.date_of_birth }} </td>
+                    <td> {{ camper.email }} </td>
+                    <td> {{ camper.phone_number }} </td>
+                    <td> {{ camper.church.name}}</td>
+                    <td> {{ camper.arrival_day}}</td>
+                    <td> {{ camper.arrival_time}}</td>
+                    <td>
+                        <a href=#>
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th class="ax-grid-action-1">#</th>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Date Of Birth</th>
-          <th>Email</th>
-          <th>Phone number</th>
-          <th>Church</th>
-          <th>Arrival Day</th>
-          <th>Arrival time</th>
-          <th class="ax-grid-action-1"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="camper in campers">
-          <td> {{ $index + 1}}.</td>
-          <td> {{ camper.last_name }} {{ camper.first_name}} {{ camper.other_names}} </td>
-          <td> {{ camper.gender }} </td>
-          <td> {{ camper.date_of_birth }} </td>
-          <td> {{ camper.email }} </td>
-          <td> {{ camper.phone_number }} </td>
-          <td> {{ camper.church.name}}</td>
-          <td> {{ camper.arrival_day}}</td>
-          <td> {{ camper.arrival_time}}</td>
-          <td>
-            <a ng-click="changeSizes()" ui-sref=".show({    id:camper._id.$oid})" >
-            <i class="glyphicon glyphicon-pencil"></i>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <iframe ng-src="{{download_link}}"></iframe>
-
 </div>

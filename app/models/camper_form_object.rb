@@ -6,7 +6,7 @@ class CamperFormObject
                 :phone_number, :confirm_phone_number, :residence, :role,
                 :emergency_contact, :emergency_number,
                 :church, :other_church,
-                :occupation, :school, :school_location, :educational_level,
+                :occupation,:profession,:other_profession, :school, :school_location, :educational_level,
                 :other_school, :other_school_location
 
   TAKE_OUT = %w(date_of_birth(1i) date_of_birth(2i) date_of_birth(3i))
@@ -76,8 +76,9 @@ class CamperFormObject
     camper.emergency_contact = form_object.emergency_contact
     camper.emergency_number = form_object.emergency_number
     camper.date_of_birth = form_object.date_of_birth
-
-    if form_object.church.downcase == 'other'
+        
+      
+   if form_object.church.downcase == 'other'
       camper.church ={
           type: 'other',
           name: form_object.other_church
@@ -89,13 +90,14 @@ class CamperFormObject
       }
     end
 
-    if form_object.occupation.downcase == 'student'
+    
+       if form_object.occupation.downcase == 'student'
       camper.occupation = {
           type: 'student',
           school_location: form_object.school_location,
           educational_level: form_object.educational_level
       }
-      if form_object.school.blank?
+      if form_object.school.downcase =='other'
         camper.occupation[:school] = form_object.other_school
         camper.occupation[:school_type] = 'other'
       else
@@ -103,19 +105,25 @@ class CamperFormObject
         camper.occupation[:school_type] = 'default'
       end
 
-      if form_object.school_location.blank?
+      if form_object.school_location.downcase=='other'
         camper.occupation[:school_location_type]= 'other'
         camper.occupation[:school_location] = form_object.other_school_location
       else
-        camper.occupation[:school_location_type]= 'default'
+        camper.occupation[:school_location_type] = 'default'
         camper.occupation[:school_location] = form_object.school_location
       end
     else
-      camper.occupation = {type: 'worker'}
+      camper.occupation= {type:'worker',profession:form_object.profession}
+      if form_object.profession.downcase =='other'
+       camper.occupation[:profession] = form_object.other_profession
+       camper.occupation[:profession_type]='other'
+      else
+        camper.occupation[:profession_type]='default'
+      end
     end
     camper
   end
-
+  
 
   def self.from_camper(camper)
     form_camper = CamperFormObject.new(nil, nil)
@@ -144,25 +152,27 @@ class CamperFormObject
       form_camper.other_church = camper.church['name']
     end
 
-    if camper.occupation['type'].downcase == 'student'
-
+    
+    if camper.occupation['type'].downcase == 'worker'
+      if camper.occupation['profession_type'].downcase =='other'
+       form_camper.other_profession=camper.occupation['profession']
+      else
+       form_camper.profession=camper.occupation['profession']
+      end
+    else
+     if camper.occupation['type'].downcase == 'student'
       form_camper.educational_level = camper.occupation['educational_level']
-
       if camper.occupation['school_type'].downcase == 'other'
         form_camper.other_school = camper.occupation['school']
       else
         form_camper.school = camper.occupation['school']
       end
-
       if camper.occupation['school_location_type'].downcase == 'other'
         form_camper.other_school_location = camper.occupation['school_location']
       else
         form_camper.school_location = camper.occupation['school_location']
       end
-    else
     end
-    form_camper.occupation = camper.occupation['type']
-    form_camper
+   end
   end
-
 end

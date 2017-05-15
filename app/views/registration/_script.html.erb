@@ -3,13 +3,16 @@
         var currentChurch;
         var currentSchool;
         var currentSchoolLocation;
+        var currentProfession;
 
         var studentDetails = $(".student_details");
+        var workerProfession=$("#camper_form_object_profession")
+        var otherProfession=$("#camper_form_object_other_profession")
         var otherChurch = $("#camper_form_object_other_church");
         var otherSchoolLocation = $("#camper_form_object_other_school_location");
         var otherSchool = $("#camper_form_object_other_school");
 
-        var ids = ['camper_form_object_email', 'camper_form_object_confirm_email', 'camper_form_object_phone_number', 'camper_form_object_confirm_phone_number'];
+        var ids = ['camper_form_object_email', 'camper_form_object_confirm_email', 'camper_form_object_phone_number', 'camper_form_object_confirm_phone_number','camper_form_object_other_profession'];
 
         var email = $("#"+ids[0]);
         var emailConfirm = $("#"+ids[1]);
@@ -40,6 +43,7 @@
             otherSchool.parent().hide();
             otherSchoolLocation.parent().hide();
             otherChurch.parent().hide();
+            otherProfession.parent().hide();
         }
         hideDefaults();        
         
@@ -59,6 +63,10 @@
             checkChurch(currentChurch);
         });
 
+       $("#camper_form_object_profession").change(function () {
+            currentProfession = $.trim($(this).val()).toLocaleLowerCase();
+            checkProfession(currentProfession);
+        });
         $("#camper_form_object_school").change(function () {
             currentSchool = $.trim($(this).val()).toLocaleLowerCase();
             checkSchool(currentSchool);
@@ -74,6 +82,13 @@
                 otherChurch.parent().show();
             } else {
                 otherChurch.parent().hide();
+            }
+        }
+        function checkProfession(currentProfession) {
+            if (currentProfession.toLocaleLowerCase() == "other") {
+                otherProfession.parent().show();
+            } else {
+                otherProfession.parent().hide();
             }
         }
 
@@ -97,10 +112,13 @@
             studentVal = $.trim(studentVal).toLocaleLowerCase();
             if (studentVal == "worker") {
                 studentDetails.hide();
+                workerProfession.parent().show();
             }
 
             if (studentVal == "student") {
                 studentDetails.show();
+                workerProfession.parent().hide();
+                
             }
         }
 
@@ -226,6 +244,15 @@
                         return false;
                     }
                 }
+            }else{
+              currentProfession = $("#camper_form_object_profession").val();
+                if ($.trim(currentProfession).toLocaleLowerCase() == 'other') {
+                    if (!validate("camper_form_object_other_profession")) {
+                        showError("Please provide a name for your profession");
+                        return false;
+                    }
+                }
+            
             }
 
             if (!validate("camper_form_object_emergency_contact")) {

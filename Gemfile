@@ -32,7 +32,10 @@ gem 'jbuilder', '~> 1.2'
 
 #because of js runtime issues
 gem 'therubyracer'
-
+#fixing event machine 1.0.3 failure
+gem 'eventmachine' ,'>=1.0.4'
+gem 'axios_rails'
+gem 'vuejs-rails'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -43,7 +46,7 @@ group :development do
 end
 
 
-ruby "2.1.0"
+ruby "2.2.5"
 
 
 # Use ActiveModel has_secure_password

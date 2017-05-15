@@ -77,6 +77,7 @@ class RegistrationController < ApplicationController
   def setup_view   
     @countries = Country::LIST.collect {|p| [ p[:printable_name], p[:name] ] }
     @schools = School::LIST.collect {|p| [ p[:name], p[:name] ] }
+    @professions = Lookup::PROFESSIONS.collect {|p| [ p[:name], p[:name] ] }
     @locations = Lookup::SCHOOL_LOCATIONS.collect {|p| [ p[:name], p[:name] ] }
     @educational_levels = Lookup::EDUCATIONAL_LEVELS.collect {|p| [ p[:name], p[:name] ] }
     @roles = Lookup::ROLES.collect {|p| [ p[:name], p[:name] ] }
@@ -123,7 +124,7 @@ class RegistrationController < ApplicationController
     :phone_number,  :residence,  :role,
     :emergency_contact, :emergency_number,
     :church, :other_church,
-    :occupation, :school,  :school_location, :educational_level, :other_school,
+    :occupation,:profession,:other_profession, :school,  :school_location, :educational_level, :other_school,
     :other_school_location,:confirm_email, :confirm_phone_number)
   end
 
