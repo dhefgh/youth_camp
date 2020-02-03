@@ -2,7 +2,7 @@ class CamperFormObject
 
   attr_accessor :is_admin, :first_name, :last_name, :other_names,
                 :gender, :date_of_birth, :email, :confirm_email, :nationality,
-                :arrival_day, :arrival_time,
+                :arrival_day, :arrival_time, :allergy,
                 :phone_number, :confirm_phone_number, :residence, :role,
                 :emergency_contact, :emergency_number,
                 :church, :other_church,
@@ -63,6 +63,7 @@ class CamperFormObject
     camper.email = form_object.email
     camper.confirm_email = form_object.confirm_email
     camper.phone_number = form_object.phone_number
+    camper.allergy = form_object.allergy
     camper.confirm_phone_number = form_object.confirm_phone_number
     camper.first_name = form_object.first_name
     camper.last_name = form_object.last_name
@@ -123,6 +124,7 @@ class CamperFormObject
     form_camper.email = camper.email
     form_camper.confirm_email = camper.confirm_email
     form_camper.phone_number = camper.phone_number
+    form_camper.allergy = camper.allergy
     form_camper.confirm_phone_number = camper.confirm_phone_number
     form_camper.first_name = camper.first_name
     form_camper.last_name = camper.last_name
