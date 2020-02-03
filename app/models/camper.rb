@@ -7,6 +7,7 @@ class Camper
   field :other_names, type: String
   field :gender, type: String
 
+  field :allergy, type: String
   field :arrival_day, type: String
   field :arrival_time, type: String
   field :date_of_birth, type: Date
