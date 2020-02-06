@@ -33,10 +33,12 @@
           <th>Gender</th>
           <th>Date Of Birth</th>
           <th>Email</th>
+          <th>Allergy</th>
           <th>Phone number</th>
           <th>Church</th>
           <th>Arrival Day</th>
           <th>Arrival time</th>
+          <th>Departure Day</th>
           <th class="ax-grid-action-1"></th>
         </tr>
       </thead>
@@ -47,10 +49,12 @@
           <td> {{ camper.gender }} </td>
           <td> {{ camper.date_of_birth }} </td>
           <td> {{ camper.email }} </td>
+          <td> {{ camper.allergy }} </td>
           <td> {{ camper.phone_number }} </td>
           <td> {{ camper.church.name}}</td>
           <td> {{ camper.arrival_day}}</td>
           <td> {{ camper.arrival_time}}</td>
+          <td> {{ camper.departure_day}}</td>
           <td>
             <a ng-click="changeSizes()" ui-sref=".show({    id:camper._id.$oid})" >
             <i class="glyphicon glyphicon-pencil"></i>
