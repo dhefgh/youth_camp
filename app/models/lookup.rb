@@ -41,6 +41,16 @@ class Lookup
      { name: "afternoon" },
      { name: "evening" }
    ]
+  
+   DEPARTURE_DAY = [
+     { name:"monday" },
+     { name:"tuesday" }
+     { name: "wednesday" },
+     { name: "thursday" },
+     { name: "friday" },
+     { name: "saturday" },
+     { name: "sunday" }
+   ]
 
    CHURCHES = [
       { name: "Ridge" },
