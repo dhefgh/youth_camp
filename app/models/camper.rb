@@ -10,6 +10,7 @@ class Camper
   field :allergy, type: String
   field :arrival_day, type: String
   field :arrival_time, type: String
+  field :departure_day, type: String
   field :date_of_birth, type: Date
 
   field :email, type: String
