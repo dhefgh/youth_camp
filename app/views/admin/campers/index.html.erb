@@ -38,6 +38,7 @@
           <th>Church</th>
           <th>Arrival Day</th>
           <th>Arrival time</th>
+          <th>Departure Day</th>
           <th class="ax-grid-action-1"></th>
         </tr>
       </thead>
@@ -53,6 +54,7 @@
           <td> {{ camper.church.name}}</td>
           <td> {{ camper.arrival_day}}</td>
           <td> {{ camper.arrival_time}}</td>
+          <td> {{ camper.departure_day}}</td>
           <td>
             <a ng-click="changeSizes()" ui-sref=".show({    id:camper._id.$oid})" >
             <i class="glyphicon glyphicon-pencil"></i>
